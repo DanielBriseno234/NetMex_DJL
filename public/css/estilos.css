@@ -1,0 +1,12 @@
+.color-navegacion{
+    background: linear-gradient(60deg,#ab47bc,#7b1fa2);
+}
+
+.logo h1{
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+a.enlace:hover{
+    background-color: #7b1fa2;
+}

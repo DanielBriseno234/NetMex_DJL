@@ -17,8 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    //Es importante que aqui agreguemos los campos que tendremos en la migracion o BD
+    //Por defecto solo viene password y email pero como utiliamos los demas se tienen que agregar
     protected $fillable = [
-        'name',
+        'nombre',
+        'apPaterno',
+        'apMaterno',
+        'username',
         'email',
         'password',
     ];
