@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\PrePincipalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,13 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+Route::get('/',[PrePincipalController::class, 'index'])->name('pre-principal');          //Ruta a la pagina principal antes de hacer login
 Route::view('/login', "login")->name('login');          //Ruta a la pagina de login
 Route::view('/registro', "register")->name('registro'); //Ruta a la pagina de registro
-Route::view('/principal', "principal")->middleware('auth')->name('principal');     //Ruta a la pagina principal
+//Route::view('/principal', "principal")->middleware('auth')->name('principal');     //Ruta a la pagina principal
+Route::view('/detalles', "detalles_pelicula")->middleware('auth')->name('detalles-pelicula');     //Ruta a la pagina de detalles
+Route::get('/principal', [MoviesController::class, 'index'])->middleware('auth')->name('principal');
+Route::get('/principal/{movie}',[MoviesController::class, 'show'])->middleware('auth')->name('principal.show');
                                                                             //El metodo middleware sirve para proteger
                                                                             //la página, ya que para ingresar a ella
                                                                             //valida si esta una sesión activa, sino hay
