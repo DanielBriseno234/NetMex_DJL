@@ -2,13 +2,17 @@
 
 @section('title', 'Inicio de sesión')
 
+@section('estilos')
+  <link rel="stylesheet" href="css/login.css">
+@endsection
+
 @section('contenido')
 <div class="page-header header-filter imagenLogin">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-            <form class="form" method="POST" action="{{ route('inicia-sesion') }}">
+            <form class="form" name="login" method="POST" action="{{ route('inicia-sesion') }}">
                 @csrf
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Login</h4>
@@ -21,9 +25,9 @@
                       <i class="material-icons">mail</i>
                     </span>
                   </div>
-                  <input type="email" class="form-control" placeholder="Email..."name="email" aria-describedby="emailHelp" value="{{ old('email') }}">
+                  <input type="email" id="email" class="form-control" placeholder="Email..." name="email" aria-describedby="emailHelp" value="{{ old('email') }}">
                 </div>
-                  {!! $errors->first('email','<small class="error">:message</small>') !!}
+                  {!! $errors->first('email','<small class="error ms-5">:message</small>') !!}
                 </div>
                 <div>
                 <div class="input-group">
@@ -34,7 +38,7 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Password..."  name="password">
                 </div>
-                  {!! $errors->first('password','<small class="error">:message</small>') !!}
+                  {!! $errors->first('password','<small class="error ms-5">:message</small>') !!}
                 </div>
                 <div class="input-group justify-content-center">
                     <div class="input-group-prepend">
@@ -58,4 +62,8 @@
     </div>
     
   </div>
+@endsection
+
+@section('javascript')
+  <script src="js/login.js"></script>
 @endsection
