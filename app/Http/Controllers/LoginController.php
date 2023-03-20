@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\User;                        //Extension del modelo
 use Illuminate\Support\Facades\Hash;        //Extension para encriptar la contraseña
 use Illuminate\Support\Facades\Auth;        //Extension para la autenticacion
+use RealRashid\SweetAlert\Facades\Alert;
+
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -45,10 +48,14 @@ class LoginController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password); //El hass::make sirve para generar la encriptacion
+        $user->imagen = "img/imgPerfil\usuario\user.png";
 
+        
         $user->save();      //guardamos el objeto en la bd
 
         Auth::login($user);     //Con esto autenticamos al usuario ingresado
+
+        alert()->success('Usuario Registrado','Se registro exitosamente el usuario  .');
 
         return redirect(route('principal'));  //Redireccion a la pagina principal
     }
@@ -88,7 +95,9 @@ class LoginController extends Controller
             return redirect()->intended(route('principal'));  //Si quiere ingresar a una diferente de la principal lo puede hacer
                                                             //Pero tiene que iniciar sesión, si no hace esto lo manda por default a la principal
         }else{ //Si el usuario no tiene las credenciales y no marca la casilla de mantener la sesion, lo redirecciona al login
-            return redirect(route('login'));
+            throw ValidationException::withMessages([
+                'password' => "El correo o la contraseña son incorrectas"
+            ]);
         }
 
     }

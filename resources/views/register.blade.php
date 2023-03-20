@@ -2,6 +2,10 @@
 
 @section('title', 'Registro')
 
+@section('estilos')
+  <link rel="stylesheet" href="css/login.css">
+@endsection
+
 @section('contenido')
 
     <div class="page-header header-filter imagenLogin">
