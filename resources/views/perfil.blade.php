@@ -1,9 +1,9 @@
-@extends('plantillas/plantillaGral') 
+@extends('plantillas/plantillaGral')
 
 @section('estilos')
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+                        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <link rel="stylesheet" href="css/perfil.css">
 @endsection
 
@@ -13,7 +13,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <form action="{{ route('cambiar-imagen') }}" name="formulario" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('cambiar-imagen') }}" name="formulario" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <img src="{{ Auth::user()->imagen }}" alt="" />
                         <div class="file btn btn-lg btn-file">
@@ -25,16 +26,38 @@
                 </div>
             </div>
 
-
             <div class="col-md-8 text-dark">
                 <div class="profile-head">
-                    <h5>
+                    <div id="donate-button-container" class="border rounded p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h5>Para nosotros es importante seguir creciendo</h5>
+                                <p style="margin: 0">Por ello te agradeceriamos cualquier donación para seguir avanzando</p>
+                            </div>
+                            <div id="donate-button"></div>
+                        </div>
+                        <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+                        <script>
+                            PayPal.Donation.Button({
+                                env: 'production',
+                                hosted_button_id: 'E9QR8JY3VZUC4',
+                                image: {
+                                    src: 'https://www.paypalobjects.com/es_XC/i/btn/btn_donate_LG.gif',
+                                    alt: 'Donar con el botón PayPal',
+                                    title: 'PayPal - The safer, easier way to pay online!',
+                                }
+                            }).render('#donate-button');
+                        </script>
+
+                    </div>
+
+
+                    <h5 class="mt-3">
                         {{ Auth::user()->nombre }} {{ Auth::user()->apPaterno }} {{ Auth::user()->apMaterno }}
                     </h5>
                     <h6>
                         Usuario de la plataforma NetMex
                     </h6>
-                    <br>
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active text-dark" id="nav-home-tab" data-bs-toggle="tab"
@@ -111,8 +134,8 @@
                                 </div>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" placeholder="Nombre..." id="nombre"
-                                        name="nombre" aria-describedby="emailHelp" value="{{ Auth::user()->nombre }}"> 
-                                        {!! $errors->first('nombre','<small class="error">:message</small>') !!}
+                                        name="nombre" aria-describedby="emailHelp" value="{{ Auth::user()->nombre }}">
+                                    {!! $errors->first('nombre', '<small class="error">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="row pt-1">
@@ -123,7 +146,7 @@
                                     <input type="text" class="form-control" placeholder="Apellido Paterno..."
                                         id="apPaterno" name="apPaterno" aria-describedby="emailHelp"
                                         value="{{ Auth::user()->apPaterno }}">
-                                        {!! $errors->first('apPaterno','<small class="error">:message</small>') !!}
+                                    {!! $errors->first('apPaterno', '<small class="error">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="row pt-1">
@@ -134,7 +157,7 @@
                                     <input type="text" class="form-control" id="apMaterno"
                                         placeholder="Apellido Materno..." name="apMaterno" aria-describedby="emailHelp"
                                         value="{{ Auth::user()->apMaterno }}">
-                                        {!! $errors->first('apMaterno','<small class="error">:message</small>') !!}
+                                    {!! $errors->first('apMaterno', '<small class="error">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="row pt-1">
@@ -144,10 +167,10 @@
                                 <div class="col-md-9">
                                     <input type="email" class="form-control" placeholder="Email..." name="email"
                                         aria-describedby="emailHelp" value="{{ Auth::user()->email }}">
-                                        
-                                        {!! $errors->first('email','<small class="error">:message</small>') !!}
+
+                                    {!! $errors->first('email', '<small class="error">:message</small>') !!}
                                 </div>
-                                
+
                             </div>
                             <div class="row pt-1">
                                 <div class="col-md-3 fw-bold">
@@ -157,7 +180,7 @@
                                     <input type="text" class="form-control" id="username" placeholder="Username..."
                                         name="username" aria-describedby="emailHelp"
                                         value="{{ Auth::user()->username }}">
-                                        {!! $errors->first('username','<small class="error">:message</small>') !!}
+                                    {!! $errors->first('username', '<small class="error">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="footer text-center">
@@ -173,9 +196,9 @@
                                     <label>Contraseña actual</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="password" class="form-control" name="passActual" placeholder="Contraseña Actual..."
-                                        id="passActual">
-                                        {!! $errors->first('passActual','<small class="error">:message</small>') !!}
+                                    <input type="password" class="form-control" name="passActual"
+                                        placeholder="Contraseña Actual..." id="passActual">
+                                    {!! $errors->first('passActual', '<small class="error">:message</small>') !!}
                                 </div>
 
                             </div>
@@ -184,9 +207,9 @@
                                     <label>Nueva Contraseña</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="password" class="form-control" name="passNueva" placeholder="Nueva Contraseña..."
-                                        id="passNueva">
-                                        {!! $errors->first('passNueva','<small class="error">:message</small>') !!}
+                                    <input type="password" class="form-control" name="passNueva"
+                                        placeholder="Nueva Contraseña..." id="passNueva">
+                                    {!! $errors->first('passNueva', '<small class="error">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="row pt-1">
@@ -194,9 +217,9 @@
                                     <label>Confirmar contraseña</label>
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="password" class="form-control" placeholder="Confirmar Contraseña..." 
-                                    id="passConfirmar" name="passConfirmar">
-                                        {!! $errors->first('passConfirmar','<small class="error">:message</small>') !!}
+                                    <input type="password" class="form-control" placeholder="Confirmar Contraseña..."
+                                        id="passConfirmar" name="passConfirmar">
+                                    {!! $errors->first('passConfirmar', '<small class="error">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="footer text-center">
@@ -208,17 +231,17 @@
             </div>
         </div>
     </div>
-    @if($errors->any())
-        <script> 
+    @if ($errors->any())
+        <script>
             Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'No se pudo realizar la modificación. Por favor revisa que toda la información este completa y vuelve a intentarlo.',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pudo realizar la modificación. Por favor revisa que toda la información este completa y vuelve a intentarlo.',
             })
         </script>
-     @endif  
+    @endif
 @endsection
 
-@section('javascript')                            
-    <script src="js/envioForm.js"></script>   
+@section('javascript')
+    <script src="js/envioForm.js"></script>
 @endsection
