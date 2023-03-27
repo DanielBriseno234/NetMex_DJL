@@ -1,5 +1,8 @@
 .color-navegacion{
     background: linear-gradient(60deg,#ab47bc,#7b1fa2);
+    ﻿
+
+    /*background: linear-gradient(to right top, #1f1658, #4f2a7a, #81409b, #b556bb,#ed6dd8);*/
 }
 
 .logo h1{

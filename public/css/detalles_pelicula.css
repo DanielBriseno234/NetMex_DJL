@@ -1,0 +1,17 @@
+.pelicula-lista{
+    width: 20vh;
+    height: 30vh;
+    background-color: beige;
+}
+
+.titulo-lista{
+    text-decoration: none;
+    color: white;
+}
+
+#reproductor{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 70vw;
+    height: 90vh;
+}
