@@ -1,19 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PerfilController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\LoginController; //Extension del controlador que se utiliza
+use App\Http\Controllers\PerfilController; //Extension del controlador que se utiliza
 
 Route::view('/login', "login")->name('login');          //Ruta a la pagina de login
 Route::view('/registro', "register")->name('registro'); //Ruta a la pagina de registro
@@ -26,8 +15,9 @@ Route::view('/principal', "principal")->middleware('auth')->name('principal');  
 
 Route::POST('/validar-registro', [ LoginController::class, 'register'])->name('validar-registro'); //Ruta para validar los datos ingresados
 Route::POST('/inicia-sesion', [ LoginController::class, 'login'])->name('inicia-sesion');       //Ruta cuando uno inicia sesión
-Route::POST('/perfil/cambiarImagen', [ PerfilController::class, 'store' ])->name('cambiar-imagen');
-Route::POST('/perfil/cambiarDatos', [ PerfilController::class, 'update' ])->name('modificar-datos');
-Route::POST('/perfil/cambiarContrasena', [ PerfilController::class, 'cambiarContrasena' ])->name('cambiar-contrasena');
+Route::POST('/perfil/cambiarImagen', [ PerfilController::class, 'store' ])->name('cambiar-imagen');  //Ruta cuando se presiona el cambiar imagen
+Route::POST('/perfil/cambiarDatos', [ PerfilController::class, 'update' ])->name('modificar-datos');    //Ruta cuando se envia el formulario de modificar perfil
+Route::POST('/perfil/cambiarContrasena', [ PerfilController::class, 'cambiarContrasena' ])->name('cambiar-contrasena'); //Ruta cuando se envia el formulario de 
+                                                                                                                        //cambio de contraseña
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');      //Ruta cuando uno presiona el cerrar sesion

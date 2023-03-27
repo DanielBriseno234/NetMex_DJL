@@ -1,5 +1,11 @@
 <?php
 
+/* 
+CREADO POR: Daniel Briseño
+FECHA CREACIÓN: 10/03/2023
+DESCRIPCIÓN: Controlador correspondiente al inicio de sesion
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,13 +14,14 @@ use Illuminate\Http\Request;
 use App\Models\User;                        //Extension del modelo
 use Illuminate\Support\Facades\Hash;        //Extension para encriptar la contraseña
 use Illuminate\Support\Facades\Auth;        //Extension para la autenticacion
-use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Facades\Alert;    //Extension de las alertas utilizadas
 
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
 
+    //Función para registrar un nuevo usuario
     public function register(Request $request){
         //Principalmente es validar los datos se puede implementar lo del profe alex
         request()->validate([
@@ -26,6 +33,7 @@ class LoginController extends Controller
             'password' => 'required|min:8|max:20',
         ],
         [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
             'nombre.required' => 'Introduzca su nombre.',
             'apPaterno.required' => 'Introduzca su apellido paterno.',
             'apMaterno.required' => 'Introduzca su apellido materno.',
@@ -55,7 +63,8 @@ class LoginController extends Controller
 
         Auth::login($user);     //Con esto autenticamos al usuario ingresado
 
-        alert()->success('Usuario Registrado','Se registro exitosamente el usuario  .');
+        alert()->success('Usuario Registrado','Se registro exitosamente el usuario  .'); //Alerta para notificar al 
+                                                                                         //usuario que se registro
 
         return redirect(route('principal'));  //Redireccion a la pagina principal
     }
@@ -67,6 +76,7 @@ class LoginController extends Controller
             'password' => 'required|min:8',
         ],
         [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
             'email.required' =>'Introduzca un correo.',
             'email.email' => 'Introduzca un correo valido.',
             'password.required' => 'Introduzca su contraseña.',
