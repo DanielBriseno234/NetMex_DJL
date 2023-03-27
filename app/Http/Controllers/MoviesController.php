@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class MoviesController extends Controller
 {
@@ -16,14 +18,18 @@ class MoviesController extends Controller
     public function index()
     {
         $popularMovies = Http::withToken(config('services.tmdb.token'))
-        ->get('https://api.themoviedb.org/3/movie/popular')
+        ->get('https://api.themoviedb.org/3/movie/popular?&language=es-MX')
         ->json()['results'];
 
         $topMovies = Http::withToken(config('services.tmdb.token'))
-        ->get('https://api.themoviedb.org/3/movie/top_rated')
+        ->get('https://api.themoviedb.org/3/movie/top_rated?&language=es-MX')
         ->json()['results'];
 
-        return view('principal',['popularMovies'=>$popularMovies,'topMovies'=>$topMovies]);
+        $paginatedPopularMovies = $this->paginate($popularMovies);
+        $paginatedTopMovies = $this->paginate($topMovies);
+
+
+        return view('principal',['popularMovies'=>$paginatedPopularMovies,'topMovies'=>$paginatedTopMovies]);
     }
 
     /**
@@ -56,7 +62,7 @@ class MoviesController extends Controller
     public function show($id)
     {
         $movie = Http::withToken(config('services.tmdb.token'))
-        ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
+        ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images&language=es-MX')
         ->json();
 
         return view('detalles_pelicula')->with('movie',$movie);
@@ -94,5 +100,12 @@ class MoviesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function paginate($items, $perPage = 22, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }

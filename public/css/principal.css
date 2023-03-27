@@ -67,18 +67,66 @@ header.masthead {
 }
 
 .pelicula-lista{
-    width: 20vh;
+    width: 100%;
     height: 30vh;
     background-color: beige;
+}
+
+.pelicula-container{
+    width: 20vh;
+    position: relative;
+    text-align:center;
+}
+
+.fondo-btn-fav{
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: #7b1fa2;
+    opacity: 0.5;
+    bottom: 0px;
+    right: 0px;
+    display: none;
+}
+
+.btn-fav{
+    border: none;
+    background: none;
+    color: white;
+    position: absolute;
+    right: 20px;
+    bottom:10px;
+    display: none;
 }
 
 #reproductor{
     height: 40vh;
     width: 80vw;
     background: white;
+    display: none;
 }
 
 .titulo-lista{
     text-decoration: none;
     color: white;
+}
+
+.pelicula-container:hover .btn-fav{
+    display: block;
+    animation: fadein-100 0.75s;
+}
+
+.pelicula-container:hover .fondo-btn-fav{
+    display: block;
+    animation: fadein-50 0.75s;
+}
+
+@keyframes fadein-100 {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadein-50 {
+    from { opacity: 0; }
+    to   { opacity: 0.5; }
 }

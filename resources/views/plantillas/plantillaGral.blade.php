@@ -29,7 +29,7 @@
                 <a class="nav-link text-white p-3 enlace" href="#">Contacto</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white p-3 enlace" href="#">Favoritos</a>
+                <a class="nav-link text-white p-3 enlace" href="{{ route('favoritos.index') }}">Favoritos</a>
               </li>
 
             </ul>

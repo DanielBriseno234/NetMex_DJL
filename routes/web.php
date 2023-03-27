@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\FavoritosController;
 use App\Http\Controllers\PrePincipalController;
 
 /*
@@ -31,3 +32,8 @@ Route::get('/principal/{movie}',[MoviesController::class, 'show'])->middleware('
 Route::post('/validar-registro', [ LoginController::class, 'register'])->name('validar-registro'); //Ruta para validar los datos ingresados
 Route::post('/inicia-sesion', [ LoginController::class, 'login'])->name('inicia-sesion');       //Ruta cuando uno inicia sesión
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');      //Ruta cuando uno presiona el cerrar sesion
+
+Route::get('/favoritos/eliminar/{id}',[FavoritosController::class, 'destroy'])->middleware('auth')->name('favoritos.destroy');
+Route::get('/favoritos/guardar/{id}',[FavoritosController::class, 'store'])->middleware('auth')->name('favoritos.store');//Ruta para guartdar una lista de favotritos
+
+Route::get('/favoritos',[FavoritosController::class, 'index'])->middleware('auth')->name('favoritos.index');//Ruta para mostrar la lista de favoritos

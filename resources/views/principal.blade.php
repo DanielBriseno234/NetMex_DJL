@@ -8,36 +8,32 @@
     <div class="container">
         <h2 class="mt-3">Populares</h2>
 
-
+        @if (session('alert_error'))
+            <div class="alert alert-error">
+                {{ session('alert') }}
+            </div>
+        @endif
 
         <div class="row">
 
             @foreach ($popularMovies as $movie)
                 <div class="col">
-                    <x-movie-card :movie="$movie"/>
+                    <x-movie-card :movie="$movie" />
                 </div>
-                @if ($loop->index==13)
-                    @break
-                @endif
-            @endforeach
-
-
-
-        </div>
-        <h2 class="mt-3">Mejor calificadas</h2>
-        <div class="row">
-
-
-            @foreach ($topMovies as $movie)
-                <div class="col">
-                    <x-movie-card :movie="$movie"/>
-                </div>
-                @if ($loop->index==13)
-                    @break
-                @endif
             @endforeach
 
         </div>
-    </div>
+
+    <h2 class="mt-3">Mejor calificadas</h2>
+    <div class="row">
+
+        @foreach ($topMovies as $movie)
+            <div class="col">
+                <x-movie-card :movie="$movie" />
+            </div>
+    @endforeach
+
+</div>
+</div>
 
 @endsection
