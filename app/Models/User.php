@@ -1,7 +1,13 @@
 <?php
 
-namespace App\Models;
+/* 
+CREADO POR: Daniel Briseño
+FECHA CREACIÓN: 10/03/2023
+DESCRIPCIÓN: Modelo basado en los datos del usuario que se registrara en la base de datos
+*/
 
+//Referencias de todos los archivos necesarios para el modelo
+namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;

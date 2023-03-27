@@ -1,25 +1,36 @@
+<!-- CREADO POR: Daniel Briseño -->
+<!-- FECHA CREACIÓN: 10/03/2023-->
+<!-- DESCRIPCIÓN: Login para usuario -->
+
+<!-- Extension de la plantilla para este diseño -->
 @extends('plantillas/plantillaLogin')
 
+<!-- Extension para colocar el titulo a este diseño -->
 @section('title', 'Inicio de sesión')
 
+<!-- Extension para colocar los estilos a este diseño  -->
 @section('estilos')
   <link rel="stylesheet" href="css/login.css">
 @endsection
 
+<!-- Extensión para colocar todo el contenido correspondiente a este diseño -->
 @section('contenido')
-<div class="page-header header-filter imagenLogin">
+<!-- Comienzo del div -->
+<div class="page-header header-filter imagenLogin"> <!-- Este div contiene la ia imagen de fondo -->
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
+            <!-- Formulario de login para ingresar los datos para inicio de sesión -->
             <form class="form" name="login" method="POST" action="{{ route('inicia-sesion') }}">
-                @csrf
+              @csrf <!-- Este comando ayuda para informar a laravel que el formulario esta validado por el usuario -->
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Login</h4>
               </div>
               <div class="card-body">
                 <div>
                 <div class="input-group">
+                  <!-- Espacio para ingresar el email -->
                   <div class="input-group-prepend">
                     <span class="input-group-text">
                       <i class="material-icons">mail</i>
@@ -27,10 +38,12 @@
                   </div>
                   <input type="email" id="email" class="form-control" placeholder="Email..." name="email" aria-describedby="emailHelp" value="{{ old('email') }}">
                 </div>
+                <!-- Captura de error -->
                   {!! $errors->first('email','<small class="error ms-5">:message</small>') !!}
                 </div>
                 <div>
                 <div class="input-group">
+                  <!-- Espacio para ingresar la contraseña -->
                   <div class="input-group-prepend">
                     <span class="input-group-text">
                       <i class="material-icons">lock_outline</i>
@@ -38,6 +51,7 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Password..."  name="password">
                 </div>
+                <!-- Captura de error -->
                   {!! $errors->first('password','<small class="error ms-5">:message</small>') !!}
                 </div>
                 <div class="input-group justify-content-center">
@@ -52,7 +66,9 @@
 
               </div>
               <div class="footer text-center">
+                <!-- Boton para enviar el formulario -->
                 <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Iniciar Sesión</button>
+                <!-- Si el usuario no tiene cuenta este espacio lo redireccionara para registrarse -->
                 <p>¿Aún no tienes cuenta? <a href="{{ route('registro') }}">Registrate</a></p>
               </div>
             </form>
@@ -64,6 +80,7 @@
   </div>
 @endsection
 
+<!-- Extención para colocar los archivos de Javascript que se utilicen en este diseño -->
 @section('javascript')
   <script src="js/login.js"></script>
 @endsection

@@ -1,5 +1,12 @@
 <?php
 
+/* 
+CREADO POR: Daniel Briseño
+FECHA CREACIÓN: 10/03/2023
+DESCRIPCIÓN: Migración para crear la tabla de usuarios en la base de datos
+*/
+
+//Referencias de todos los archivos necesarios para el modelo
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -36,8 +43,8 @@ class CreateUsersTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
+     * La funcion down sirve para cuando ejecutamos comandos que involucren borrar 
+     * la tabla en la base de datos
      * @return void
      */
     public function down()
