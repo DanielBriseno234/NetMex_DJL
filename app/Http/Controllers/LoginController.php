@@ -1,5 +1,11 @@
 <?php
 
+/* 
+CREADO POR: Daniel Briseño
+FECHA CREACIÓN: 10/03/2023
+DESCRIPCIÓN: Controlador correspondiente al inicio de sesion
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,11 +16,13 @@ use App\Models\User;                        //Extension del modelo del usuario
 use Illuminate\Support\Facades\Hash;        //Extension para encriptar la contraseña
 use Illuminate\Support\Facades\Auth;        //Extension para la autenticacion
 use Illuminate\Support\Facades\Http;        //Extension para la peticion Http
-
+use RealRashid\SweetAlert\Facades\Alert;    //Extension de las alertas utilizadas
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
 
+    //Función para registrar un nuevo usuario
     public function register(Request $request){
         //Principalmente es validar los datos se puede implementar lo del profe alex
         request()->validate([
@@ -26,6 +34,7 @@ class LoginController extends Controller
             'password' => 'required|min:8|max:20',
         ],
         [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
             'nombre.required' => 'Introduzca su nombre.',
             'apPaterno.required' => 'Introduzca su apellido paterno.',
             'apMaterno.required' => 'Introduzca su apellido materno.',
@@ -48,7 +57,9 @@ class LoginController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password); //El hass::make sirve para generar la encriptacion
+        $user->imagen = "img/imgPerfil\usuario\user.png";
 
+        
         $user->save();      //guardamos el objeto en la bd
 
         Auth::login($user);     //Con esto autenticamos al usuario ingresado
@@ -78,7 +89,9 @@ class LoginController extends Controller
 			'favoritos_id' => $lista_fav['list_id'],
 			'historial_id' => $lista_his['list_id']
 		]);
-
+    
+        alert()->success('Usuario Registrado','Se registro exitosamente el usuario  .'); //Alerta para notificar al 
+                                                                                         //usuario que se registro
         return redirect(route('principal'));  //Redireccion a la pagina principal
     }
 
@@ -89,6 +102,7 @@ class LoginController extends Controller
             'password' => 'required|min:8',
         ],
         [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
             'email.required' =>'Introduzca un correo.',
             'email.email' => 'Introduzca un correo valido.',
             'password.required' => 'Introduzca su contraseña.',
@@ -117,7 +131,9 @@ class LoginController extends Controller
             return redirect()->intended(route('principal'));  //Si quiere ingresar a una diferente de la principal lo puede hacer
                                                             //Pero tiene que iniciar sesión, si no hace esto lo manda por default a la principal
         }else{ //Si el usuario no tiene las credenciales y no marca la casilla de mantener la sesion, lo redirecciona al login
-            return redirect(route('login'));
+            throw ValidationException::withMessages([
+                'password' => "El correo o la contraseña son incorrectas"
+            ]);
         }
 
     }

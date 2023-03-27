@@ -13,3 +13,17 @@
 a.enlace:hover{
     background-color: #7b1fa2;
 }
+
+.error{
+    color: red;
+}
+
+.imgPerfil{
+    height: 30px;
+    width: 30px;
+}
+
+.p{
+    height: 100%!important;
+    border-radius: 50%;
+}
