@@ -56,7 +56,7 @@
 
             @foreach ($popularMovies as $movie)
                 <div class="col">
-                    <x-movie-card :movie="$movie"/>
+                    <x-movie-card-muestra :movie="$movie"/>
                 </div>
                 @if ($loop->index==6)
                     @break

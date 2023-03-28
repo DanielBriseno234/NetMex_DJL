@@ -44,7 +44,7 @@
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                <li><a class="dropdown-item" href="#">Historial</a></li>
+                <li><a class="dropdown-item" href="{{ route('historial.index') }}">Historial</a></li>
                 <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar Sesión</a></li>
               </ul>
             </div>
