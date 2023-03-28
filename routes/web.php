@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\MessagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +25,17 @@ Route::view('/principal', "principal")->middleware('auth')->name('principal');  
 Route::post('/validar-registro', [ LoginController::class, 'register'])->name('validar-registro'); //Ruta para validar los datos ingresados
 Route::post('/inicia-sesion', [ LoginController::class, 'login'])->name('inicia-sesion');       //Ruta cuando uno inicia sesión
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');      //Ruta cuando uno presiona el cerrar sesion
+
+
+
+
+
+
+
+
+
+
+
+Route::view('/nosotros', "nosotros")->middleware('auth')->name('nosotros'); //Ruta de la pagina nosotros.
+Route::view('/contacto', "contacto")->middleware('auth')->name('contacto');  //Ruta de la pagina contacto.
+Route::post('/contacto',[MessagesController::class, 'store']); //Ruta de la funcion de contacto.
