@@ -31,4 +31,16 @@ a.enlace:hover{
     background-image: url(https://cdn.pixabay.com/photo/2017/11/24/10/43/analogue-2974647_1280.jpg);
     background-size: cover;
     background-position: center;
+.error{
+    color: red;
+}
+
+.imgPerfil{
+    height: 30px;
+    width: 30px;
+}
+
+.p{
+    height: 100%!important;
+    border-radius: 50%;
 }
