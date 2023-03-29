@@ -15,24 +15,75 @@
 
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div  class="carousel-item active">
 
-                <div class="d-block elemento-carousel">
+                <div id="e-carrusel-1" class="d-block elemento-carousel">
                     <div class="container">
+                        @foreach ($upcomingMovies as $movie)
+                            @if ($loop->index==1)
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-2  mt-4 ms-5">
+                                        <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
+                                    </div>
+                                    <div class="col-7 mt-4">
+                                        <h1 class="display-3">{{ $movie['title'] }}</h1>
+                                        <p class="mt-2">{{ $movie['overview'] }}</p>
+                                    </div>
+                                </div>
 
+                                @break
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
 
-                <div class="d-block elemento-carousel">
-                    <div class="container"></div>
+                <div id="e-carrusel-2"  class="d-block elemento-carousel">
+                    <div class="container">
+                        @foreach ($upcomingMovies as $movie)
+                            @if ($loop->index==2)
+                                <div class="row">
+                                    <div class="col-1"></div>
+
+                                    <div class="col-2  mt-4 ms-5">
+                                        <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
+                                    </div>
+                                    <div class="col-7 mt-4">
+                                        <h1 class="display-3">{{ $movie['title'] }}</h1>
+                                        <p class="mt-2">{{ $movie['overview'] }}</p>
+                                    </div>
+                                </div>
+
+                                @break
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
-            <div class="carousel-item">
+            <div  class="carousel-item">
 
-                <div class="d-block elemento-carousel">
-                    <div class="container"></div>
+                <div id="e-carrusel-3" class="d-block elemento-carousel">
+                    <div class="container">
+                        @foreach ($upcomingMovies as $movie)
+                            @if ($loop->index==3)
+                                <div class="row">
+                                    <div class="col-1"></div>
+
+                                    <div class="col-2  mt-4 ms-5">
+                                        <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
+                                    </div>
+                                    <div class="col-7 mt-4">
+                                        <h1 class="display-3">{{ $movie['title'] }}</h1>
+                                        <p class="mt-2">{{ $movie['overview'] }}</p>
+                                    </div>
+                                </div>
+
+                                @break
+                            @endif
+                        @endforeach
+                    </div>
 
                 </div>
             </div>
