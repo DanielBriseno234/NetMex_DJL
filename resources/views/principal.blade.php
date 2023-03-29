@@ -15,9 +15,8 @@
         @endif
 
         <div class="row">
-
             @foreach ($popularMovies as $movie)
-                <div class="col">
+                <div class="col-2">
                     <x-movie-card :movie="$movie" />
                 </div>
             @endforeach
@@ -28,7 +27,7 @@
     <div class="row">
 
         @foreach ($topMovies as $movie)
-            <div class="col">
+            <div class="col-2">
                 <x-movie-card :movie="$movie" />
             </div>
     @endforeach

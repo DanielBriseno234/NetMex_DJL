@@ -22,7 +22,7 @@
                     </div>
                 @endforeach
             @else
-                <p>No se encuentran historial!</p>
+                <p>No se encuentra historial!</p>
             @endif
         </div>
     </div>

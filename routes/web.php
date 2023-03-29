@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\FavoritosController;
 use App\Http\Controllers\PrePincipalController;
+use App\Http\Controllers\HistorialController;
 use App\Http\Controllers\LoginController; //Extension del controlador que se utiliza
 use App\Http\Controllers\PerfilController; //Extension del controlador que se utiliza
 
@@ -29,6 +30,7 @@ Route::POST('/perfil/cambiarContrasena', [ PerfilController::class, 'cambiarCont
                                                                                                                         //cambio de contraseña
 Route::get('/favoritos/eliminar/{id}',[FavoritosController::class, 'destroy'])->middleware('auth')->name('favoritos.destroy');
 Route::get('/favoritos/guardar/{id}',[FavoritosController::class, 'store'])->middleware('auth')->name('favoritos.store');//Ruta para guartdar una lista de favotritos
-
 Route::get('/favoritos',[FavoritosController::class, 'index'])->middleware('auth')->name('favoritos.index');//Ruta para mostrar la lista de favoritos
+
+Route::get('/historial',[HistorialController::class, 'index'])->middleware('auth')->name('historial.index');//Ruta para mostrar la lista de historial
 

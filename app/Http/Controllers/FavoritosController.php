@@ -23,14 +23,18 @@ class FavoritosController extends Controller
         if($favoriteMovies['item_count']==0){
             $favoriteMovies = null;
         }else{
+            foreach ($favoriteMovies['items'] as $key=> $favMovie) {
+                $favoriteMovies['items'][$key] += ['favorite' => true];
+            }
+
             $favoriteMovies = $favoriteMovies['items'];
         }
 
         return view('favoritos',['favoriteMovies'=>$favoriteMovies]);
     }
 
-    public function store($id){
-
+    public function store($id)
+    {
         $id_usuario = Auth::id(); //id del usuario
 
         $lista = Lista::where('user_id', $id_usuario)->first();;//Se obtiene la lista con el id del usuario
@@ -48,12 +52,26 @@ class FavoritosController extends Controller
         }
 
         return redirect()->back();
-
-
     }
 
     public function destroy($id)
     {
+        $id_usuario = Auth::id(); //id del usuario
 
+        $lista = Lista::where('user_id', $id_usuario)->first();;//Se obtiene la lista con el id del usuario
+
+        $id_lista = $lista['favoritos_id'];//Se saca el id de la lista en la API
+
+        $resultado = Http::withToken(config('services.tmdb.token'))//Se hace un POST y se obtiene la respuesta
+        ->post('https://api.themoviedb.org/3/list/'.$id_lista.'/remove_item', [
+            'media_id' => $id //En este caso $id es el id de la pelicula en la API
+        ])
+        ->json();
+
+        if (!$resultado['status_code']==200) {
+            return redirect()->back()->with('alert_error', 'Error al remover favoritos!');
+        }
+
+        return redirect()->back();
     }
 }
