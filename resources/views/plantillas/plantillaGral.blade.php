@@ -38,11 +38,11 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <!-- Link de navegación para página de nosotros -->
               <li class="nav-item">
-                <a class="nav-link text-white p-3 enlace" aria-current="page" href="#">Nosotros</a>
+                <a class="nav-link text-white p-3 enlace" aria-current="page" href="{{ route('nosotros') }}">Nosotros</a>
               </li>
               <!-- Link de navegación para página de contacto -->
               <li class="nav-item">
-                <a class="nav-link text-white p-3 enlace" href="#">Contacto</a>
+                <a class="nav-link text-white p-3 enlace" href="{{ route('contacto') }}">Contacto</a>
               </li>
               <!-- Link de navegación para página de favoritos -->
               <li class="nav-item">
