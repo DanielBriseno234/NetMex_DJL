@@ -1,17 +1,28 @@
 <?php
 
+/* 
+CREADO POR: Daniel Briseño
+FECHA CREACIÓN: 10/03/2023
+DESCRIPCIÓN: Controlador correspondiente al inicio de sesion
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 //Extensiones de archivos que tenemos que utilizar para iniciar sesión
-use App\Models\User;                        //Extension del modelo
+use App\Models\Lista;                       //Importamos el modelo de la lista
+use App\Models\User;                        //Extension del modelo del usuario
 use Illuminate\Support\Facades\Hash;        //Extension para encriptar la contraseña
 use Illuminate\Support\Facades\Auth;        //Extension para la autenticacion
+use Illuminate\Support\Facades\Http;        //Extension para la peticion Http
+use RealRashid\SweetAlert\Facades\Alert;    //Extension de las alertas utilizadas
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
 
+    //Función para registrar un nuevo usuario
     public function register(Request $request){
         //Principalmente es validar los datos se puede implementar lo del profe alex
         request()->validate([
@@ -23,6 +34,7 @@ class LoginController extends Controller
             'password' => 'required|min:8|max:20',
         ],
         [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
             'nombre.required' => 'Introduzca su nombre.',
             'apPaterno.required' => 'Introduzca su apellido paterno.',
             'apMaterno.required' => 'Introduzca su apellido materno.',
@@ -45,11 +57,41 @@ class LoginController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password); //El hass::make sirve para generar la encriptacion
+        $user->imagen = "img/imgPerfil\usuario\user.png";
 
+        
         $user->save();      //guardamos el objeto en la bd
 
         Auth::login($user);     //Con esto autenticamos al usuario ingresado
 
+        //Creando listas del usuario
+
+        $lista_fav = Http::withToken(config('services.tmdb.token'))//Se hace un POST y se obtiene la respuesta
+        ->post('https://api.themoviedb.org/3/list', [
+            'name' => 'djl_fav_'.Auth::id(),
+            'description' => 'Lista de favoritos de usuario con id '.Auth::id(),
+            'language' => 'es-MX'
+        ])
+        ->json();
+
+        $lista_his = Http::withToken(config('services.tmdb.token'))//Se hace un POST y se obtiene la respuesta X2
+        ->post('https://api.themoviedb.org/3/list', [
+            'name' => 'djl_his_'.Auth::id(),
+            'description' => 'Lista de historial de usuario con id '.Auth::id(),
+            'language' => 'es-MX'
+        ])
+        ->json();
+
+        $userId = Auth::id();//Se obtiene el Id del usuario mediante Auth;
+
+        Lista::create([//Se inserta la lista a la
+			'user_id' => $userId,
+			'favoritos_id' => $lista_fav['list_id'],
+			'historial_id' => $lista_his['list_id']
+		]);
+    
+        alert()->success('Usuario Registrado','Se registro exitosamente el usuario  .'); //Alerta para notificar al 
+                                                                                         //usuario que se registro
         return redirect(route('principal'));  //Redireccion a la pagina principal
     }
 
@@ -60,6 +102,7 @@ class LoginController extends Controller
             'password' => 'required|min:8',
         ],
         [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
             'email.required' =>'Introduzca un correo.',
             'email.email' => 'Introduzca un correo valido.',
             'password.required' => 'Introduzca su contraseña.',
@@ -81,14 +124,16 @@ class LoginController extends Controller
         //Esto sirve para que se haga un intento de inicio de sesión automatico
         //Si las credenciales estan y se marca la opcion de mantener la sesion
         //el sistema accede automaticamente
-        if(Auth::attempt($credentials, $remember)){     
+        if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();      //aqui borra las sesiones anteriores, en caso de haber mantenido una perdida
 
             //Esto ayuda en dado caso que intente ingresar a cualquier página desde la url
             return redirect()->intended(route('principal'));  //Si quiere ingresar a una diferente de la principal lo puede hacer
                                                             //Pero tiene que iniciar sesión, si no hace esto lo manda por default a la principal
         }else{ //Si el usuario no tiene las credenciales y no marca la casilla de mantener la sesion, lo redirecciona al login
-            return redirect(route('login'));
+            throw ValidationException::withMessages([
+                'password' => "El correo o la contraseña son incorrectas"
+            ]);
         }
 
     }
