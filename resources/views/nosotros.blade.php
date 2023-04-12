@@ -41,9 +41,9 @@
 </div>
 </div> -->
 <!-- Se realiza una nevgador Tabs para la seccion de nosotros -->
-<center>
+
 <h2>Nosotros</h2>
-</center>
+
 <div class="container">
         <div class="lbl-menu">
             <label for="radio1">Mision</label>
@@ -76,8 +76,8 @@
             <div class="tab4">
                 <p>Bienvenidos a NetMex, una plataforma de streaming creada para ofrecerte la mejor experiencia de entretenimiento en línea. Nuestro objetivo es hacer que el acceso a tus programas de TV, películas y series favoritas sea más fácil y accesible que nunca.</p>
                 <p>En NetMex, creemos que el entretenimiento debe ser una experiencia sin complicaciones. Por eso, hemos creado una plataforma intuitiva y fácil de usar que te permite explorar y descubrir nuevos contenidos con facilidad. Ya sea que estés buscando la última serie de moda, un clásico de la pantalla grande o contenido original exclusivo, encontrarás todo lo que necesitas en nuestra plataforma.</p>
-                <h5><b> Tienes algun problema</b></h5><h6>Ponte en contacto</h6>
-                <a  href="{{ route('contacto') }}">Presion aqui</a>
+                <h5><b> Tienes algun problema o duda</b></h5><h6>Ponte en contacto</h6>
+                <a  href="{{ route('contacto') }}">Presiona aqui</a>
             </div>
         </div>
     </div>

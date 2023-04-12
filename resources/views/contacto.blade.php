@@ -16,7 +16,7 @@
 				<input type="text" name="name" class="field" placeholder="Usuario" value="{{ old('name') }}"><br>
 				<!--Mensaje de error en caso de no cumplir los requerimientos-->
 				<div style="color:black;">{!! $errors->first('asunto','<small>:message</small><br>') !!}</div>
-				<input type="text" name="asunto" class="field" placeholder="Aunto" value="{{ old('asunto') }}"><br>
+				<input type="text" name="asunto" class="field" placeholder="Asunto" value="{{ old('asunto') }}"><br>
         <!--Mensaje de error en caso de no cumplir los requerimientos-->
 				<div style="color:black;">{!! $errors->first('descripcion','<small>:message</small><br>') !!}</div>
 				<textarea placeholder="Message" name="descripcion" class="field">{{ old('descripcion') }}</textarea><br>
