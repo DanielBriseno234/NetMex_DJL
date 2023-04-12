@@ -31,7 +31,6 @@
                                         <p class="mt-2">{{ $movie['overview'] }}</p>
                                     </div>
                                 </div>
-
                                 @break
                             @endif
                         @endforeach
@@ -70,7 +69,6 @@
                             @if ($loop->index==3)
                                 <div class="row">
                                     <div class="col-1"></div>
-
                                     <div class="col-2  mt-4 ms-5">
                                         <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
                                     </div>
@@ -79,12 +77,10 @@
                                         <p class="mt-2">{{ $movie['overview'] }}</p>
                                     </div>
                                 </div>
-
                                 @break
                             @endif
                         @endforeach
                     </div>
-
                 </div>
             </div>
         </div>
@@ -101,8 +97,6 @@
     <div class="container">
         <h2 class="mt-3">Populares</h2>
 
-
-
         <div class="row">
 
             @foreach ($popularMovies as $movie)
@@ -113,9 +107,6 @@
                     @break
                 @endif
             @endforeach
-
-
-
         </div>
     </div>
 
