@@ -67,14 +67,16 @@ header.masthead {
 }
 
 .pelicula-lista{
+
     width: 100%;
     height: 30vh;
     background-color: beige;
+    z-index: -10 ;
 }
 
 .pelicula-container{
     width: 20vh;
-    position: relative;
+    position: relative !important;
     text-align:center;
 }
 
@@ -129,4 +131,8 @@ header.masthead {
 @keyframes fadein-50 {
     from { opacity: 0; }
     to   { opacity: 0.5; }
+}
+
+#fl:hover{
+    color: gray !important;
 }
