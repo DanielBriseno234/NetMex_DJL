@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="css/estilos.css">
     <!-- Etiqueta para que puedan referenciar los archivos de estilos -->
     @yield("estilos")
+
+    @livewireStyles
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
@@ -28,7 +30,7 @@
         <!-- Titulo de la página -->
         <h1 class="text-center text-white"><a href="{{ route('principal') }}" class="nav-link">NetMex</a></h1>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light color-navegacion">
+    <nav style="z-index: 1000" class="navbar navbar-expand-lg navbar-light color-navegacion">
         <div class="container-fluid d-flex justify-content-end">
           <!-- Es el botón para cuando el sitio se visualiice en celular -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,11 +52,12 @@
               </li>
             </ul>
             <!-- Formulario para busqueda de películas -->
-            <form class="d-flex">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-              <button class="me-1 bg-transparent border-0 text-white" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-            <!-- Boton desplegable para opciones correspondientes a modificacion de perfil --> 
+            @php
+            @endphp
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-center">
+                <livewire:search-dropdown>
+            </div>
+            <!-- Boton desplegable para opciones correspondientes a modificacion de perfil -->
             <div class="dropdown d-flex justify-content-end mt-1">
               <a class="nav-link  imgPerfil" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ Auth::user()->imagen }}" class="p"  alt=""
@@ -72,13 +75,16 @@
       </nav>
       <!-- Fin de barra de navegación -->
 
+
   <!--  Etiqueta para que puedan desarrollar el contenido en cada diseño-->
   @yield('contenido')
 
   <!-- Etiqueta para que se utilice el paquete del sweetalert -->
   @include('sweetalert::alert')
-  
+
   <!-- Script principal -->
   @yield('javascript')
+
+  @livewireScripts
 </body>
 </html>

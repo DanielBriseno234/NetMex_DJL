@@ -33,8 +33,6 @@
                         $cast = $creditos['cast'];
                         $videos = $movie['videos'];
                         $videos_result = $videos['results'];
-
-
                     }}
 
                     @endphp
