@@ -55,7 +55,7 @@ header.masthead {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    background-image: url("https://cdn.pixabay.com/photo/2017/08/10/00/41/home-2616543_1280.jpg");
+    background-image: url("/img/home.jpg");
 }
 
 .elemento-carousel{
@@ -112,6 +112,17 @@ header.masthead {
     text-decoration: none;
     color: white;
 }
+
+.pelicula-container{
+  transition: transform 0.3s ease-out 20ms;
+}
+
+.pelicula-container:hover{
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  opacity: .8;
+}
+
 
 .pelicula-container:hover .btn-fav{
     display: block;

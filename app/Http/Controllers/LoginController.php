@@ -144,7 +144,7 @@ class LoginController extends Controller
         $request->session()->invalidate();  //Destruye la sesión
         $request->session()->regenerate();  //Y la elimina
 
-        return redirect(route('login'));    //Redirección a la pagina del login
+        return redirect(route('pre-principal'));    //Redirección a la pagina del login
     }
 }
 

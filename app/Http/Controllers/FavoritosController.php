@@ -49,6 +49,8 @@ class FavoritosController extends Controller
 
         if (!$resultado['status_code']==201) {
             return redirect()->back()->with('alert_error', 'Error al añadir favoritos!');
+        }else{
+            alert()->success('Agregado a favoritos', 'La película se agrego a favoritos');
         }
 
         return redirect()->back();
@@ -70,6 +72,8 @@ class FavoritosController extends Controller
 
         if (!$resultado['status_code']==200) {
             return redirect()->back()->with('alert_error', 'Error al remover favoritos!');
+        }else{
+            alert()->success('Removida de favoritos', 'La película fue removida da favoritos');
         }
 
         return redirect()->back();

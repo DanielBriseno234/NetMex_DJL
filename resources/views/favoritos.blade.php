@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/principal.css">
 
     <div class="container">
-        <h2 class="mt-3">Favoritos</h2>
+        <h2 class="mt-3 mb-4 text-center">Favoritos</h2>
 
         @if (session('alert_error'))
             <div class="alert alert-danger">
@@ -17,12 +17,12 @@
         <div class="row">
             @if ($favoriteMovies != null)
                 @foreach ($favoriteMovies as $movie)
-                    <div class="col">
+                    <div class="col mb-3">
                         <x-movie-card :movie="$movie" />
                     </div>
                 @endforeach
             @else
-                <p>No se encuentran favoritos!</p>
+                <p class="text-center">No se encuentran favoritos!</p>
             @endif
         </div>
     </div>
