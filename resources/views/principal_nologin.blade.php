@@ -5,7 +5,7 @@
 @section('contenido')
     <link rel="stylesheet" href="css/principal.css">
     <div class="jumbotron jb-principal">
-        <div class="container-fluid jumbotron-texto">
+        <div class="container-fluid jumbotron-texto container">
             <h1 class="display-3">Contenido a tu alcance</h1>
             <p class="lead">Descubre un mundo de películas!</p>
         </div>
@@ -95,7 +95,7 @@
     </div>
 
     <div class="container">
-        <h2 class="mt-3">Populares</h2>
+        <h2 class="mt-3 text-center mb-3">Populares</h2>
 
         <div class="row">
 
@@ -110,5 +110,6 @@
         </div>
     </div>
 
+    @include('components.footer')
 
 @endsection

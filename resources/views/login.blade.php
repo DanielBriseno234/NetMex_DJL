@@ -65,11 +65,12 @@
                 </div>
 
               </div>
-              <div class="footer text-center">
+              <div class="footer text-center mb-2">
                 <!-- Boton para enviar el formulario -->
                 <button type="submit" class="btn btn-primary btn-link btn-wd btn-lg">Iniciar Sesión</button>
                 <!-- Si el usuario no tiene cuenta este espacio lo redireccionara para registrarse -->
                 <p>¿Aún no tienes cuenta? <a href="{{ route('registro') }}">Registrate</a></p>
+                <a href="{{ route('pre-principal') }}"><p>Regresar a la página principal</p></a>
               </div>
             </form>
           </div>

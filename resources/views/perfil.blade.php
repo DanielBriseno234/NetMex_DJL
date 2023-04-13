@@ -285,6 +285,8 @@
             })
         </script>
     @endif
+
+    @include('components.footer')
 @endsection
 
 <!-- Extención para colocar los archivos de Javascript que se utilicen en este diseño -->

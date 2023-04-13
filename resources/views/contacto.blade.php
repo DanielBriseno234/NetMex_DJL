@@ -8,7 +8,7 @@
 		<div class="contact-box">
 			<div class="left"></div>
 			<div class="right">
-				<h2>Contact Us</h2>
+				<h2>Contactanos</h2>
 				<form method="post" action="{{ route('contacto') }}">
 				@csrf
         <!--Mensaje de error en caso de no cumplir los requerimientos-->
@@ -19,12 +19,14 @@
 				<input type="text" name="asunto" class="field" placeholder="Asunto" value="{{ old('asunto') }}"><br>
         <!--Mensaje de error en caso de no cumplir los requerimientos-->
 				<div style="color:black;">{!! $errors->first('descripcion','<small>:message</small><br>') !!}</div>
-				<textarea placeholder="Message" name="descripcion" class="field">{{ old('descripcion') }}</textarea><br>
+				<textarea placeholder="Mensaje" name="descripcion" class="field">{{ old('descripcion') }}</textarea><br>
 				<button class="btn" id="myButton">enviar</button>
 				</form>
 			</div>
 		</div>
 	</div>
+
+  @include('components.footer')
 
 <script type="text/javascript">
 const button = document.getElementById("myButton");

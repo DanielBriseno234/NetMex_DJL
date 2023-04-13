@@ -2,8 +2,11 @@
 
 @section('title', 'Nosotros')
 
-@section('contenido')
+@section('estilos')
 <link rel="stylesheet" href="{{asset('css/nosotros.css')}}">
+@endsection
+
+@section('contenido')
 <!-- <div class="title-cards">
 		
 	</div>
@@ -42,7 +45,7 @@
 </div> -->
 <!-- Se realiza una nevgador Tabs para la seccion de nosotros -->
 
-<h2>Nosotros</h2>
+<h2 class="mt-3 mb-4 text-center">Nosotros</h2>
 
 <div class="container">
         <div class="lbl-menu">
