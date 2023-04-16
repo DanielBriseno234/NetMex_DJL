@@ -10,8 +10,10 @@
 
     <div class="container mt-5">
 
-        <div class="row ">
+        <div class="row">
+            
             <div class="col-lg-3">
+                
                 <img class="pelicula-lista" src="{{ 'https://image.tmdb.org/t/p/w200/' . $movie['poster_path'] }}"
                     alt="">
             </div>

@@ -2,8 +2,10 @@
 
 @section('title', 'Página principal')
 
+@section('estilos', )
+
 @section('contenido')
-    <link rel="stylesheet" href="css/principal.css">
+<link rel="stylesheet" href="{{asset('css/principal.css')}}">
     <div class="jumbotron jb-principal">
         <div class="container-fluid jumbotron-texto container">
             <h1 class="display-3">Contenido a tu alcance</h1>
@@ -21,12 +23,12 @@
                     <div class="container">
                         @foreach ($upcomingMovies as $movie)
                             @if ($loop->index==1)
-                                <div class="row">
-                                    <div class="col-1"></div>
-                                    <div class="col-2  mt-4 ms-5">
-                                        <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
+                                <div class="carruselGrid">
+                                    {{-- <div class="col-1"></div> --}}
+                                    <div class="carruselCol1">
+                                        <img class="imgCarrusel" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
                                     </div>
-                                    <div class="col-7 mt-4">
+                                    <div class="carruselCol2">
                                         <h1 class="display-3">{{ $movie['title'] }}</h1>
                                         <p class="mt-2">{{ $movie['overview'] }}</p>
                                     </div>
@@ -43,13 +45,13 @@
                     <div class="container">
                         @foreach ($upcomingMovies as $movie)
                             @if ($loop->index==2)
-                                <div class="row">
-                                    <div class="col-1"></div>
+                                <div class="carruselGrid">
+                                    {{-- <div class="col-1"></div> --}}
 
-                                    <div class="col-2  mt-4 ms-5">
-                                        <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
+                                    <div class="carruselCol1">
+                                        <img class="imgCarrusel" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
                                     </div>
-                                    <div class="col-7 mt-4">
+                                    <div class="carruselCol2">
                                         <h1 class="display-3">{{ $movie['title'] }}</h1>
                                         <p class="mt-2">{{ $movie['overview'] }}</p>
                                     </div>
@@ -67,12 +69,12 @@
                     <div class="container">
                         @foreach ($upcomingMovies as $movie)
                             @if ($loop->index==3)
-                                <div class="row">
-                                    <div class="col-1"></div>
-                                    <div class="col-2  mt-4 ms-5">
-                                        <img class="pelicula-container" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
+                                <div class="carruselGrid">
+                                    {{-- <div class="col-1"></div> --}}
+                                    <div class="carruselCol1">
+                                        <img class="imgCarrusel" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">
                                     </div>
-                                    <div class="col-7 mt-4">
+                                    <div class="carruselCol2">
                                         <h1 class="display-3">{{ $movie['title'] }}</h1>
                                         <p class="mt-2">{{ $movie['overview'] }}</p>
                                     </div>
@@ -94,21 +96,22 @@
         </button>
     </div>
 
-    <div class="container">
+    
         <h2 class="mt-3 text-center mb-3">Populares</h2>
 
-        <div class="row">
+        <div class="movieGrid">
 
             @foreach ($popularMovies as $movie)
-                <div class="col">
-                    <x-movie-card-muestra :movie="$movie"/>
-                </div>
+            <div class="mb-3">
+                <x-movie-card-muestra :movie="$movie"/>
+            </div>
                 @if ($loop->index==6)
                     @break
                 @endif
             @endforeach
+            
         </div>
-    </div>
+    
 
     @include('components.footer')
 

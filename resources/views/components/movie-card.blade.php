@@ -1,4 +1,4 @@
-<div>
+<div class="text-center">
     <div class="pelicula-container">
         <a href="{{route('principal.show',$movie['id'])}}">
             <img class="pelicula-lista" src="{{ 'https://image.tmdb.org/t/p/w500/' . $movie['poster_path'] }}" alt="">

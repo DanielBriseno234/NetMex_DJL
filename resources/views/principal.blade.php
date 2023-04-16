@@ -5,7 +5,7 @@
 @section('contenido')
     <link rel="stylesheet" href="css/principal.css">
 
-    <div class="container">
+    <div class="">
         <h2 class="mt-3 mb-4 text-center">Populares</h2>
 
         @if (session('alert_error'))
@@ -14,26 +14,24 @@
             </div>
         @endif
 
-        <div class="row">
+        <div class="movieGrid">
             @foreach ($popularMovies as $movie)
-                <div class="col-2 mb-3">
+                <div class="mb-3">
                     <x-movie-card :movie="$movie" />
                 </div>
             @endforeach
 
         </div>
 
-    <h2 class="mt-3 mb-4 text-center">Mejor calificadas</h2>
-    <div class="row">
-
-        @foreach ($topMovies as $movie)
-            <div class="col-2 mb-3">
-                <x-movie-card :movie="$movie" />
-            </div>
-    @endforeach
-
-</div>
-</div>
+        <h2 class="mt-3 mb-4 text-center">Mejor calificadas</h2>
+        <div class="movieGrid">
+            @foreach ($topMovies as $movie)
+                <div class="mb-3">
+                    <x-movie-card :movie="$movie" />
+                </div>
+            @endforeach 
+        </div>
+    </div>
 
     @include('components.footer')
 
