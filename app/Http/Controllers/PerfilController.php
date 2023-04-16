@@ -19,6 +19,15 @@ class PerfilController extends Controller
 {
     //Metodo para actualizar foto de perfiel de ususario
     public function store(Request $request){
+        request()->validate([
+            'imagen'=>'dimensions:max_width=1000,max_height=1000',
+        ],
+        [
+            //Estos son los mensajes que se mostrarán en caso de no cumplir con las reglas
+            'imagen.dimensions' => 'Tamaño no valido.',
+        ]);
+
+        
         $user =  Auth::user(); //En una variable asignamos el usuario que tiene la sesion activa
 
         if($request -> hasfile('imagen') ){ //Si la petición tiene un dato de tipo file
@@ -34,7 +43,11 @@ class PerfilController extends Controller
                         ->update(array('imagen'=> $uploadSuccess));
 
         //dd( $request ->hasfile('features') );
-        
+
+        if($sqlDB == 1){
+            alert()->success('Modificación exitosamente', 'La foto de perfil fue modificada con éxito');
+        }
+
         return redirect()->back();  //Retornamos al usuario a la pagina en donde estaba
     }
 

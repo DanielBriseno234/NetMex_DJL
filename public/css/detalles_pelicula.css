@@ -1,7 +1,18 @@
 .pelicula-lista{
-    width: 20vh;
-    height: 30vh;
+    width: 35vh;
+    height: 55vh;
     background-color: beige;
+}
+
+@media (max-width: 991px){
+    .pelicula-lista{
+        width: 45vh;
+        height: 67vh;
+    }
+    .row .col-lg-3{
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .titulo-lista{

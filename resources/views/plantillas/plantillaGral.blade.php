@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <link rel="stylesheet" href="fontawesome/fontawesome-free-6.3.0-web/css/all.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <!-- Etiqueta para que puedan referenciar los archivos de estilos -->
     @yield("estilos")
 
@@ -28,7 +28,7 @@
     <!-- Comienzo de la barra de navegación -->
     <div class="color-navegacion logo">
         <!-- Titulo de la página -->
-        <h1 class="text-center text-white"><a href="{{ route('principal') }}" class="nav-link">NetMex</a></h1>
+        <h1 class="text-center text-white"><a href="{{ route('principal') }}" class="nav-link">NETMEX</a></h1>
     </div>
     <nav style="z-index: 1000" class="navbar navbar-expand-lg navbar-light color-navegacion">
         <div class="container-fluid d-flex justify-content-end">
@@ -36,7 +36,7 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon text-white"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse mt-2" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <!-- Link de navegación para página de nosotros -->
               <li class="nav-item">
@@ -54,21 +54,26 @@
             <!-- Formulario para busqueda de películas -->
             @php
             @endphp
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-center">
+            <div class="search d-flex flex-wrap align-items-center justify-content-center justify-content-lg-center">
                 <livewire:search-dropdown>
             </div>
             <!-- Boton desplegable para opciones correspondientes a modificacion de perfil -->
             <div class="dropdown d-flex justify-content-end mt-1">
-              <a class="nav-link  imgPerfil" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{ Auth::user()->imagen }}" class="p"  alt=""
-                  loading="lazy" />
-              </a>
-              <!-- Links para páginas de modificación de perfil -->
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{{ route('perfil') }}">Mi perfil</a></li>
-                <li><a class="dropdown-item" href="{{ route('historial.index') }}">Historial</a></li>
-                <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar Sesión</a></li>
-              </ul>
+              <div class="d-flex p-3 enlace align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class=" imgPerfil">
+                  <img src="../{{ Auth::user()->imagen }}" class="p"  alt=""
+                    loading="lazy" />
+                </a>
+                <div class="ms-2">
+                  {{Auth::user()->nombre}} {{Auth::user()->apPaterno}} 
+                </div>
+              </div>
+                <!-- Links para páginas de modificación de perfil -->
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{ route('perfil') }}">Mi perfil</a></li>
+                  <li><a class="dropdown-item" href="{{ route('historial.index') }}">Historial</a></li>
+                  <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar Sesión</a></li>
+                </ul>
             </div>
           </div>
         </div>

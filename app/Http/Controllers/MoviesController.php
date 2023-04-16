@@ -168,7 +168,7 @@ class MoviesController extends Controller
         return $anyMovies;
     }
 
-    public function paginate($items, $perPage = 18, $page = null, $options = [])
+    public function paginate($items, $perPage = 20, $page = null, $options = [])
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);

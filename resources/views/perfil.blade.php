@@ -31,6 +31,7 @@
                             <span id="error"></span>
                         </div>
                     </form>
+                    {!! $errors->first('imagen','<small class="text-danger fw-bold">:message</small><br>') !!}
                 </div>
             </div>
             <!-- Fin de formulario para comabiar imagen de perfil -->
@@ -276,12 +277,24 @@
     </div>
 
     <!-- Este script captura un error y muestra una alrta en caso de que exista el error -->
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'No se pudo realizar la modificación. Por favor revisa que toda la información este completa y vuelve a intentarlo.',
+            })
+        </script>
+    @endif --}}
+
+    
+
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pudo realizar la modificación. Por favor revisa lo ingresado y vuelve a intentarlo.' ,
             })
         </script>
     @endif

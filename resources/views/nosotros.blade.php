@@ -79,8 +79,11 @@
             <div class="tab4">
                 <p>Bienvenidos a NetMex, una plataforma de streaming creada para ofrecerte la mejor experiencia de entretenimiento en línea. Nuestro objetivo es hacer que el acceso a tus programas de TV, películas y series favoritas sea más fácil y accesible que nunca.</p>
                 <p>En NetMex, creemos que el entretenimiento debe ser una experiencia sin complicaciones. Por eso, hemos creado una plataforma intuitiva y fácil de usar que te permite explorar y descubrir nuevos contenidos con facilidad. Ya sea que estés buscando la última serie de moda, un clásico de la pantalla grande o contenido original exclusivo, encontrarás todo lo que necesitas en nuestra plataforma.</p>
-                <h5><b> Tienes algun problema o duda</b></h5><h6>Ponte en contacto</h6>
-                <a  href="{{ route('contacto') }}">Presiona aqui</a>
+                <h5><b> Tienes algún problema o duda</b></h5>
+                <p class="mb-0">Envianos un email y te responderemos en breve</p>
+                <a  href="{{ route('contacto') }}" class="mb-3">Enviar Email</a>
+                <p class="mb-0">o ponte en contacto con nosotros desde WhatsApp</p>
+                <a href="https://api.whatsapp.com/send?phone=524779241397">Enviar WhatsApp</a>
             </div>
         </div>
     </div>

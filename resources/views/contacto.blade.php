@@ -20,7 +20,7 @@
         <!--Mensaje de error en caso de no cumplir los requerimientos-->
 				<div style="color:black;">{!! $errors->first('descripcion','<small>:message</small><br>') !!}</div>
 				<textarea placeholder="Mensaje" name="descripcion" class="field">{{ old('descripcion') }}</textarea><br>
-				<button class="btn" id="myButton">enviar</button>
+				<button class="btn" id="myButton">Enviar</button>
 				</form>
 			</div>
 		</div>
